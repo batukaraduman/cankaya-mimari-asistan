@@ -112,7 +112,24 @@ def main_app():
             view_mode = st.radio("Görünüm Modu:", ["Yönetici Paneli", "Öğrenci Görünümü (Test)"])
         else:
             st.info("🎓 ÖĞRENCİ")
-        
+       # --- ŞİFRE DEĞİŞTİRME ALANI ---
+        with st.expander("🔐 Şifre Değiştir"):
+            yeni_sifre = st.text_input("Yeni Şifre", type="password")
+            yeni_sifre_tekrar = st.text_input("Yeni Şifre (Tekrar)", type="password")
+            
+            if st.button("Şifreyi Güncelle", use_container_width=True):
+                if len(yeni_sifre) < 6:
+                    st.warning("Şifre en az 6 karakter olmalıdır.")
+                elif yeni_sifre != yeni_sifre_tekrar:
+                    st.error("Girdiğiniz şifreler eşleşmiyor!")
+                else:
+                    try:
+                        # Supabase şifre güncelleme komutu
+                        supabase.auth.update_user({"password": yeni_sifre})
+                        st.success("Şifreniz başarıyla güncellendi!")
+                    except Exception as e:
+                        st.error(f"Hata: Şifre güncellenemedi. ({e})")
+        # ----------------------------- 
         st.divider()
         if st.button("Çıkış Yap"):
             logout_user()
