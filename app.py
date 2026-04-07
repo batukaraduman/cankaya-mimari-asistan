@@ -26,7 +26,12 @@ if 'user' not in st.session_state:
     st.session_state.user = None
 if 'role' not in st.session_state:
     st.session_state.role = 'student'
-
+hide_streamlit_style = """
+            <style>
+            footer {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 # -----------------------------------------------------------------------------
 # 2. YARDIMCI FONKSİYONLAR
 # -----------------------------------------------------------------------------
