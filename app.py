@@ -133,6 +133,14 @@ def main_app():
                 else:
                     try:
                         # Supabase şifre güncelleme komutu
+                        # --- YENİ EKLENEN SATIR: Şifre değiştirmeden hemen önce kimliğimizi Supabase'e kanıtlıyoruz ---
+                        supabase.auth.set_session(st.session_state.access_token, st.session_state.refresh_token)
+                        
+                        # Supabase şifre güncelleme komutu
+                        supabase.auth.update_user({"password": yeni_sifre})
+                        st.success("Şifreniz başarıyla güncellendi!")
+                    except Exception as e:
+                        st.error(f"Hata: Şifre güncellenemedi. ({e})")
                         supabase.auth.update_user({"password": yeni_sifre})
                         st.success("Şifreniz başarıyla güncellendi!")
                     except Exception as e:
