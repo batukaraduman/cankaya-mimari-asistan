@@ -81,6 +81,14 @@ def login_user(email, password):
         response = supabase.auth.sign_in_with_password({"email": email, "password": password})
         st.session_state.logged_in = True
         st.session_state.user = response.user
+
+        # --- YENİ EKLENEN 2 SATIR: Supabase kimlik biletlerini cebimize koyuyoruz ---
+        st.session_state.access_token = response.session.access_token
+        st.session_state.refresh_token = response.session.refresh_token
+
+        # --- VERİTABANI ÜZERİNDEN ROL KONTROLÜ ---
+        user_id = response.user.id
+        role_data = supabase.table("user_roles").select("role").eq("user_id", user_id).execute()
         
         user_id = response.user.id
         role_data = supabase.table("user_roles").select("role").eq("user_id", user_id).execute()
