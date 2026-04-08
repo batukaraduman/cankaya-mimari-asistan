@@ -31,15 +31,13 @@ if 'user' not in st.session_state:
 if 'role' not in st.session_state:
     st.session_state.role = 'student'
 
-# Sadece Streamlit footer ve menüsünü gizler
+# --- SADECE REKLAM GİZLEYİCİ ---
 hide_streamlit_style = """
             <style>
-            #MainMenu {visibility: hidden;}
             footer {visibility: hidden;}
+            [data-testid="stFooter"] {display: none !important;}
             .viewerBadge_container {display: none !important;}
             .viewerBadge_link {display: none !important;}
-            [data-testid="stToolbar"] {visibility: hidden !important;}
-            [data-testid="stFooter"] {display: none !important;}
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
