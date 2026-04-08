@@ -264,7 +264,7 @@ def main_app():
                                 new_record_id = response.data[0]['id']
                                 
                                 # --- WEBHOOK URL (BURAYA KENDİ LOCALHOST URL'İNİ YAPIŞTIRMAYI UNUTMA) ---
-                                n8n_url = "http://localhost:5678/webhook/mimari-analiz" 
+                                n8n_url = "http://167.71.43.247:5678/webhook/mimari-analiz" 
                                 requests.post(n8n_url, json={"record_id": new_record_id})
                                 upload_success = True
                                 
