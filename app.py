@@ -10,7 +10,11 @@ import re
 # -----------------------------------------------------------------------------
 # 1. AYARLAR VE KURULUM
 # -----------------------------------------------------------------------------
-st.set_page_config(page_title="YZ Mimari Asistan", layout="wide")
+st.set_page_config(
+    page_title="YZ Mimari Asistan", 
+    layout="wide", 
+    initial_sidebar_state="expanded"  # <-- İŞTE BU EKLENDİ
+)
 
 try:
     url = st.secrets["supabase"]["url"]
