@@ -28,7 +28,13 @@ if 'role' not in st.session_state:
     st.session_state.role = 'student'
 hide_streamlit_style = """
             <style>
+            #MainMenu {visibility: hidden;}
             footer {visibility: hidden;}
+            /* Sağ alt köşedeki o inatçı Streamlit rozetini (badge) zorla gizler */
+            .viewerBadge_container {display: none !important;}
+            .viewerBadge_link {display: none !important;}
+            [data-testid="stToolbar"] {visibility: hidden !important;}
+            [data-testid="stFooter"] {display: none !important;}
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
